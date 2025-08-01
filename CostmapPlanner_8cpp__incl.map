@@ -10,7 +10,7 @@
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="886,62,886,101,880,101,880,62"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="933,116,982,142"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="907,60,941,103,937,106,902,63"/>
-<area shape="rect" id="Node000007" href="$CostmapPlanner_8hpp.html" title="Declaration of the CostmapPlanner class implementing A* path planning." alt="" coords="523,109,698,150"/>
+<area shape="rect" id="Node000007" href="$CostmapPlanner_8hpp.html" title="Declaration of the CostmapPlanner class implementing A* path planning using Costmap2D." alt="" coords="523,109,698,150"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="805,64,683,106,681,101,803,59"/>
 <area shape="rect" id="Node000012" href="$costmap__2d_8hpp.html" title=" " alt="" coords="323,198,506,238"/>
 <area shape="poly" id="edge26_Node000001_Node000012" title=" " alt="" coords="782,40,718,47,649,60,578,81,512,111,490,127,469,146,437,186,433,183,465,143,486,123,510,107,576,76,647,55,718,42,781,35"/>
