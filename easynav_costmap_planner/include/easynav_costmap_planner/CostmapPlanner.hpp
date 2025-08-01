@@ -18,7 +18,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 /// \file
-/// \brief Declaration of the CostmapPlanner class implementing A* path planning.
+/// \brief Declaration of the CostmapPlanner class implementing A* path planning using Costmap2D.
 
 #ifndef EASYNAV_COSTMAP_PLANNER__COSTMAPPLANNER_HPP_
 #define EASYNAV_COSTMAP_PLANNER__COSTMAPPLANNER_HPP_
@@ -36,60 +36,68 @@ namespace easynav
 {
 
 /// \brief A planner implementing the A* algorithm on a Costmap2D grid.
+///
+/// This class generates a collision-free path using A* search over a 2D costmap.
+/// It supports cost-based penalties and anisotropic movement costs.
 class CostmapPlanner : public PlannerMethodBase
 {
 public:
   /**
    * @brief Default constructor.
    *
-   * Initializes the internal variables and parameters of the planner.
+   * Initializes internal parameters and configuration values.
    */
   explicit CostmapPlanner();
 
   /**
    * @brief Initializes the planner.
    *
-   * Configures publishers, retrieves parameters, and prepares the planner
-   * for path generation using the available map data.
+   * Loads planner parameters, sets up ROS publishers,
+   * and prepares the costmap-based planning environment.
    *
-   * @return std::expected<void, std::string> Success or an error message.
+   * @return std::expected<void, std::string> A success indicator or error message.
    */
   virtual std::expected<void, std::string> on_initialize() override;
 
   /**
-   * @brief Updates the planner by computing a new path.
+   * @brief Executes a planning cycle using the current navigation state.
    *
-   * Uses the current navigation state (including the robot's position and goal)
-   * to generate a path based on the A* algorithm.
+   * Computes a path from the robot's current pose to the goal using A*.
    *
-   * @param nav_state The current navigation state (contains odometry and goal information).
+   * @param nav_state Current shared navigation state (input/output).
    */
   void update(NavState & nav_state) override;
 
 protected:
-  double cost_factor_;
-  double inflation_penalty_;
-  double cost_axial_;
-  double cost_diagonal_;
+  double cost_factor_;        ///< Scaling factor applied to cell cost values.
+  double inflation_penalty_; ///< Extra cost penalty for paths near inflated obstacles.
+  double cost_axial_;        ///< Cost multiplier for axial (horizontal/vertical) moves.
+  double cost_diagonal_;     ///< Cost multiplier for diagonal moves.
 
-  nav_msgs::msg::Path current_path_;  ///< The last computed path.
+  nav_msgs::msg::Path current_path_;  ///< Most recently computed path.
 
-  /// Publisher for the computed navigation path.
+  /// Publisher for the computed navigation path (for visualization or monitoring).
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub_;
 
   /**
-   * @brief Runs the A* algorithm to compute a path.
+   * @brief Internal A* path planning routine.
    *
-   * @param map The occupancy map used for path planning.
-   * @param start The starting pose in world coordinates.
-   * @param goal The target pose in world coordinates.
-   * @return A sequence of poses representing the planned path.
+   * Computes a path on the given costmap from the start pose to the goal pose.
+   *
+   * Movement cost is influenced by:
+   * - The cost of each cell (retrieved from the costmap).
+   * - Additional inflation penalties near obstacles.
+   * - Anisotropic weights for axial vs diagonal movement.
+   *
+   * @param map The costmap to plan over.
+   * @param start The robot's starting pose in world coordinates.
+   * @param goal The goal pose in world coordinates.
+   * @return A vector of poses representing the planned path.
    */
   std::vector<geometry_msgs::msg::Pose> a_star_path(
     const Costmap2D & map,
     const geometry_msgs::msg::Pose & start,
     const geometry_msgs::msg::Pose & goal);
-
 };
 
 }  // namespace easynav
