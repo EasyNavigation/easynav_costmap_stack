@@ -190,13 +190,14 @@ CostmapMapsManager::update(NavState & nav_state)
   }
 
   Costmap2D dynamic_map = static_map_;
-  nav_state.set("map.dynamic", dynamic_map);
+  nav_state.set("map.dynamic.filtered", dynamic_map);
 
   for (const auto & filter : costmap_filters_) {
     filter->update(nav_state);
   }
 
-  const auto & final_dynamic_map = nav_state.get<Costmap2D>("map.dynamic");
+  const auto & final_dynamic_map = nav_state.get<Costmap2D>("map.dynamic.filtered");
+  nav_state.set("map.dynamic", final_dynamic_map);
 
   final_dynamic_map.toOccupancyGridMsg(dynamic_grid_msg_);
   dynamic_grid_msg_.header.frame_id = "map";

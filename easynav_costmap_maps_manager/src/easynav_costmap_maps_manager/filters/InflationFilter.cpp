@@ -101,7 +101,7 @@ InflationFilter::on_initialize()
 void
 InflationFilter::update(NavState & nav_state)
 {
-  Costmap2D dynamic_map = nav_state.get<Costmap2D>("map.dynamic");
+  Costmap2D dynamic_map = nav_state.get<Costmap2D>("map.dynamic.filtered");
 
   if (!matchedSize_) {
     cell_inflation_radius_ = cellDistance(dynamic_map, inflation_radius_);
@@ -111,7 +111,7 @@ InflationFilter::update(NavState & nav_state)
 
   updateCosts(dynamic_map, 0, 0, dynamic_map.getSizeInCellsX(), dynamic_map.getSizeInCellsY());
 
-  nav_state.set("map.dynamic", dynamic_map);
+  nav_state.set("map.dynamic.filtered", dynamic_map);
 }
 
 
