@@ -55,7 +55,7 @@ ObstacleFilter::update(NavState & nav_state)
 
   const auto & perceptions = nav_state.get<PointPerceptions>("points");
 
-  Costmap2D dynamic_map = nav_state.get<Costmap2D>("map.dynamic");
+  Costmap2D dynamic_map = nav_state.get<Costmap2D>("map.dynamic.filtered");
 
   auto fused = PointPerceptionsOpsView(perceptions)
     .downsample(dynamic_map.getResolution())
@@ -70,7 +70,7 @@ ObstacleFilter::update(NavState & nav_state)
     }
   }
 
-  nav_state.set("map.dynamic", dynamic_map);
+  nav_state.set("map.dynamic.filtered", dynamic_map);
 }
 
 }  // namespace easynav
