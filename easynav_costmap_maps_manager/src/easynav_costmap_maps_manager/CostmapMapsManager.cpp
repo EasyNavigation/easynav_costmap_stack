@@ -83,7 +83,8 @@ CostmapMapsManager::on_initialize()
       std::shared_ptr<CostmapFilter> instance;
       instance = costmap_filters_loader_->createSharedInstance(plugin);
 
-      auto result = instance->initialize(node, plugin_name + "." + costmap_filter, get_tf_ns());
+      auto result = instance->initialize(node, plugin_name + "." + costmap_filter,
+        get_tf_prefix());
 
       if (!result) {
         RCLCPP_ERROR(node->get_logger(),
@@ -127,7 +128,7 @@ CostmapMapsManager::on_initialize()
 
     static_map_ = Costmap2D(static_grid_msg_);
 
-    static_grid_msg_.header.frame_id = get_tf_ns() + "map";
+    static_grid_msg_.header.frame_id = get_tf_prefix() + "map";
     static_grid_msg_.header.stamp = node->now();
     static_occ_pub_->publish(static_grid_msg_);
   }
@@ -140,7 +141,7 @@ CostmapMapsManager::on_initialize()
 
       static_map_ = Costmap2D(*msg);
 
-      static_grid_msg_.header.frame_id = get_tf_ns() + "map";
+      static_grid_msg_.header.frame_id = get_tf_prefix() + "map";
       static_grid_msg_.header.stamp = this->get_node()->now();
 
       static_occ_pub_->publish(static_grid_msg_);
@@ -200,7 +201,7 @@ CostmapMapsManager::update(NavState & nav_state)
   nav_state.set("map.dynamic", final_dynamic_map);
 
   final_dynamic_map.toOccupancyGridMsg(dynamic_grid_msg_);
-  dynamic_grid_msg_.header.frame_id = get_tf_ns() + "map";
+  dynamic_grid_msg_.header.frame_id = get_tf_prefix() + "map";
   dynamic_grid_msg_.header.stamp = get_node()->now();
   dynamic_occ_pub_->publish(dynamic_grid_msg_);
 }
