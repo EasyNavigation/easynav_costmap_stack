@@ -37,10 +37,13 @@ CostmapFilter::CostmapFilter()
 std::expected<void, std::string>
 CostmapFilter::initialize(
   const std::shared_ptr<rclcpp_lifecycle::LifecycleNode> parent_node,
-  const std::string plugin_name)
+  const std::string & plugin_name,
+  const std::string & tf_prefix
+)
 {
   parent_node_ = parent_node;
   plugin_name_ = plugin_name;
+  tf_prefix_ = tf_prefix;
 
   return on_initialize();
 }
@@ -55,6 +58,12 @@ const std::string &
 CostmapFilter::get_plugin_name() const
 {
   return plugin_name_;
+}
+
+const std::string &
+CostmapFilter::get_tf_prefix() const
+{
+  return tf_prefix_;
 }
 
 }  // namespace easynav

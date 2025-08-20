@@ -83,7 +83,8 @@ CostmapMapsManager::on_initialize()
       std::shared_ptr<CostmapFilter> instance;
       instance = costmap_filters_loader_->createSharedInstance(plugin);
 
-      auto result = instance->initialize(node, plugin_name + "." + costmap_filter);
+      auto result = instance->initialize(node, plugin_name + "." + costmap_filter,
+        get_tf_prefix());
 
       if (!result) {
         RCLCPP_ERROR(node->get_logger(),
@@ -105,11 +106,11 @@ CostmapMapsManager::on_initialize()
   }
 
   static_occ_pub_ = node->create_publisher<nav_msgs::msg::OccupancyGrid>(
-    node->get_name() + std::string("/") + plugin_name + "/map",
+    node->get_fully_qualified_name() + std::string("/") + plugin_name + "/map",
     rclcpp::QoS(1).transient_local().reliable());
 
   dynamic_occ_pub_ = node->create_publisher<nav_msgs::msg::OccupancyGrid>(
-    node->get_name() + std::string("/") + plugin_name + "/dynamic_map", 100);
+    node->get_fully_qualified_name() + std::string("/") + plugin_name + "/dynamic_map", 100);
 
   map_path_ = "/tmp/default.map.yaml";
   if (!package_name.empty() && !map_path_file.empty()) {
@@ -127,27 +128,27 @@ CostmapMapsManager::on_initialize()
 
     static_map_ = Costmap2D(static_grid_msg_);
 
-    static_grid_msg_.header.frame_id = "map";
+    static_grid_msg_.header.frame_id = get_tf_prefix() + "map";
     static_grid_msg_.header.stamp = node->now();
     static_occ_pub_->publish(static_grid_msg_);
   }
 
   incoming_map_sub_ = node->create_subscription<nav_msgs::msg::OccupancyGrid>(
-    node->get_name() + std::string("/") + plugin_name + "/incoming_map",
+    node->get_fully_qualified_name() + std::string("/") + plugin_name + "/incoming_map",
     rclcpp::QoS(1).transient_local().reliable(),
     [this](nav_msgs::msg::OccupancyGrid::UniquePtr msg) {
       static_grid_msg_ = *msg;
 
       static_map_ = Costmap2D(*msg);
 
-      static_grid_msg_.header.frame_id = "map";
+      static_grid_msg_.header.frame_id = get_tf_prefix() + "map";
       static_grid_msg_.header.stamp = this->get_node()->now();
 
       static_occ_pub_->publish(static_grid_msg_);
     });
 
   savemap_srv_ = node->create_service<std_srvs::srv::Trigger>(
-    node->get_name() + std::string("/") + plugin_name + "/savemap",
+    node->get_fully_qualified_name() + std::string("/") + plugin_name + "/savemap",
     [this](
       const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
       std::shared_ptr<std_srvs::srv::Trigger::Response> response)
@@ -200,7 +201,7 @@ CostmapMapsManager::update(NavState & nav_state)
   nav_state.set("map.dynamic", final_dynamic_map);
 
   final_dynamic_map.toOccupancyGridMsg(dynamic_grid_msg_);
-  dynamic_grid_msg_.header.frame_id = "map";
+  dynamic_grid_msg_.header.frame_id = get_tf_prefix() + "map";
   dynamic_grid_msg_.header.stamp = get_node()->now();
   dynamic_occ_pub_->publish(dynamic_grid_msg_);
 }
