@@ -208,6 +208,7 @@ AMCLLocalizer::on_initialize()
   node->declare_parameter<double>(plugin_name + ".noise_translation_to_rotation", 0.01);
   node->declare_parameter<double>(plugin_name + ".min_noise_xy", 0.05);
   node->declare_parameter<double>(plugin_name + ".min_noise_yaw", 0.05);
+  node->declare_parameter<bool>(plugin_name + ".compute_odom_from_tf", false);
 
   node->get_parameter<int>(plugin_name + ".num_particles", num_particles);
   node->get_parameter<double>(plugin_name + ".initial_pose.x", x_init);
@@ -221,6 +222,7 @@ AMCLLocalizer::on_initialize()
     noise_translation_to_rotation_);
   node->get_parameter<double>(plugin_name + ".min_noise_xy", min_noise_xy_);
   node->get_parameter<double>(plugin_name + ".min_noise_yaw", min_noise_yaw_);
+  node->get_parameter<bool>(plugin_name + ".compute_odom_from_tf", compute_odom_from_tf_);
 
   double reseed_freq;
   node->get_parameter<double>(plugin_name + ".reseed_freq", reseed_freq);
@@ -253,14 +255,16 @@ AMCLLocalizer::on_initialize()
   rclcpp::SubscriptionOptions options;
   options.callback_group = rt_cbg;
 
-  odom_sub_ = get_node()->create_subscription<nav_msgs::msg::Odometry>(
-    "odom", rclcpp::SensorDataQoS().reliable(),
-    std::bind(&AMCLLocalizer::odom_callback, this, _1), options);
+  if (!compute_odom_from_tf_) {
+    odom_sub_ = get_node()->create_subscription<nav_msgs::msg::Odometry>(
+      "odom", rclcpp::SensorDataQoS().reliable(),
+      std::bind(&AMCLLocalizer::odom_callback, this, _1), options);
+  }
 
   particles_pub_ = get_node()->create_publisher<geometry_msgs::msg::PoseArray>(
-    "amcl/particles", 10);
+    node->get_fully_qualified_name() + std::string("/") + plugin_name + "/particles", 10);
   estimate_pub_ = get_node()->create_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
-    "amcl/pose", 10);
+    node->get_fully_qualified_name() + std::string("/") + plugin_name + "/pose", 10);
 
   last_reseed_ = get_node()->now();
 
@@ -312,6 +316,8 @@ AMCLLocalizer::update(NavState & nav_state)
 void
 AMCLLocalizer::odom_callback(nav_msgs::msg::Odometry::UniquePtr msg)
 {
+  if (compute_odom_from_tf_) {return;}
+
   tf2::fromMsg(msg->pose.pose, odom_);
 
   if (!initialized_odom_) {
@@ -321,10 +327,39 @@ AMCLLocalizer::odom_callback(nav_msgs::msg::Odometry::UniquePtr msg)
 }
 
 void
+AMCLLocalizer::update_odom_from_tf()
+{
+  geometry_msgs::msg::TransformStamped tf_msg;
+  try {
+    tf_msg = RTTFBuffer::getInstance()->lookupTransform(
+      "odom", "base_footprint", tf2::TimePointZero, tf2::durationFromSec(0.0));
+  } catch (const tf2::TransformException & ex) {
+    RCLCPP_WARN(get_node()->get_logger(), "AMCLLocalizer::update: TF failed: %s", ex.what());
+    return;
+  }
+
+  tf2::Transform tf_odom;
+  tf2::fromMsg(tf_msg.transform, tf_odom);
+
+  last_odom_ = odom_;
+  odom_ = tf_odom;
+
+  initialized_odom_ = true;
+}
+
+void
 AMCLLocalizer::predict([[maybe_unused]] NavState & nav_state)
 {
   if (!initialized_odom_) {
+    if (compute_odom_from_tf_) {
+      update_odom_from_tf();
+    }
+
     return;
+  }
+
+  if (compute_odom_from_tf_) {
+    update_odom_from_tf();
   }
 
   tf2::Transform delta = last_odom_.inverseTimes(odom_);
