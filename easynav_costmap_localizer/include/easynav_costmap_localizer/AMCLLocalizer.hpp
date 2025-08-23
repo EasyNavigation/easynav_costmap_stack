@@ -171,6 +171,12 @@ protected:
    */
   void odom_callback(nav_msgs::msg::Odometry::UniquePtr msg);
 
+  /**
+   * @brief Update odom from TFs instead of a odom topic
+   *
+   */
+  void update_odom_from_tf();
+
   /// List of particles representing the belief distribution.
   std::vector<Particle> particles_;
 
@@ -194,6 +200,9 @@ protected:
 
   /// Minimum yaw noise threshold.
   double min_noise_yaw_ {0.05};
+
+  /// Whether to use TFs to compute odom
+  bool compute_odom_from_tf_ {false};
 
   /// Last odometry transform received.
   tf2::Transform odom_{tf2::Transform::getIdentity()};
