@@ -75,6 +75,7 @@ protected:
   double cost_diagonal_;     ///< Cost multiplier for diagonal moves.
   bool continuous_replan_ {true};    ///< Wheter replan path at freq time
   nav_msgs::msg::Path current_path_;  ///< Most recently computed path.
+  geometry_msgs::msg::Pose current_goal_;  ///< Current goal.
 
   /// Publisher for the computed navigation path (for visualization or monitoring).
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub_;

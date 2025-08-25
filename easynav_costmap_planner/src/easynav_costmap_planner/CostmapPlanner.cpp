@@ -132,7 +132,14 @@ void CostmapPlanner::update(NavState & nav_state)
   }
 
   auto goals_ts = rclcpp::Time(goals.header.stamp);
-  if (!continuous_replan_ && goals_ts < rclcpp::Time(current_path_.header.stamp)) {return;}
+  if (!continuous_replan_ &&
+    goals_ts < rclcpp::Time(current_path_.header.stamp) &&
+    goals.goals.front().pose == current_goal_)
+  {
+    return;
+  }
+
+  current_goal_ = goal;
 
   auto poses = a_star_path(map, robot_pose.pose.pose, goal);
   if (!poses.empty()) {
