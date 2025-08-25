@@ -51,5 +51,6 @@ var searchData=
   ['costmapplanner_2ehpp_48',['CostmapPlanner.hpp',['../CostmapPlanner_8hpp.html',1,'']]],
   ['costmaptest_49',['CostmapTest',['../classCostmapTest.html',1,'CostmapTest'],['../classCostmapTest.html#aff4a64a63514981a9ed190fd4c17723e',1,'CostmapTest::CostmapTest()']]],
   ['costmaptester_50',['CostmapTester',['../classeasynav_1_1Costmap2D.html#a9f13f59f234edd1db20196987ac18fcd',1,'easynav::Costmap2D::CostmapTester()'],['../classCostmap2D.html#a9f13f59f234edd1db20196987ac18fcd',1,'Costmap2D::CostmapTester()']]],
-  ['current_5fpath_5f_51',['current_path_',['../classeasynav_1_1CostmapPlanner.html#a8dc6b25f90bfb16f7f1d95b51800aa00',1,'easynav::CostmapPlanner']]]
+  ['current_5fgoal_5f_51',['current_goal_',['../classeasynav_1_1CostmapPlanner.html#aa6594c58e9975c44d0602a32f8b89d96',1,'easynav::CostmapPlanner']]],
+  ['current_5fpath_5f_52',['current_path_',['../classeasynav_1_1CostmapPlanner.html#a8dc6b25f90bfb16f7f1d95b51800aa00',1,'easynav::CostmapPlanner']]]
 ];

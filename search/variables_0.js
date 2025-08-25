@@ -13,5 +13,6 @@ var searchData=
   ['cost_5ffactor_5f_10',['cost_factor_',['../classeasynav_1_1CostmapPlanner.html#a89eb78013dffcbf2780471861a37b90a',1,'easynav::CostmapPlanner']]],
   ['cost_5fscaling_5ffactor_5f_11',['cost_scaling_factor_',['../classeasynav_1_1InflationFilter.html#a0fbe2927ae8f7e2facab0c5a0d11c192',1,'easynav::InflationFilter']]],
   ['costmap_5f_12',['costmap_',['../classeasynav_1_1Costmap2D.html#a9b1a3d5d06a8675f34758dbaf7f9cf70',1,'easynav::Costmap2D::costmap_'],['../classCostmap2D.html#a9b1a3d5d06a8675f34758dbaf7f9cf70',1,'Costmap2D::costmap_']]],
-  ['current_5fpath_5f_13',['current_path_',['../classeasynav_1_1CostmapPlanner.html#a8dc6b25f90bfb16f7f1d95b51800aa00',1,'easynav::CostmapPlanner']]]
+  ['current_5fgoal_5f_13',['current_goal_',['../classeasynav_1_1CostmapPlanner.html#aa6594c58e9975c44d0602a32f8b89d96',1,'easynav::CostmapPlanner']]],
+  ['current_5fpath_5f_14',['current_path_',['../classeasynav_1_1CostmapPlanner.html#a8dc6b25f90bfb16f7f1d95b51800aa00',1,'easynav::CostmapPlanner']]]
 ];

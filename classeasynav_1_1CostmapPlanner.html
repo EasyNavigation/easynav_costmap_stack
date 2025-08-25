@@ -116,17 +116,19 @@ Collaboration diagram for CostmapPlanner:</div>
 <div class="dyncontent">
 <div class="center"><img src="classeasynav_1_1CostmapPlanner__coll__graph.png" border="0" usemap="#aCostmapPlanner_coll__map" alt="Collaboration graph"/></div>
 <map name="aCostmapPlanner_coll__map" id="aCostmapPlanner_coll__map">
-<area shape="rect" title="A planner implementing the A* algorithm on a Costmap2D grid." alt="" coords="268,139,385,165"/>
+<area shape="rect" title="A planner implementing the A* algorithm on a Costmap2D grid." alt="" coords="340,139,457,165"/>
 <area shape="rect" href="classPlannerMethodBase.html" title=" " alt="" coords="5,5,144,31"/>
-<area shape="poly" title=" " alt="" coords="98,40,140,77,194,113,231,127,268,138,267,143,229,133,192,117,137,81,94,44"/>
+<area shape="poly" title=" " alt="" coords="96,40,137,78,162,97,189,113,226,127,266,136,340,146,339,151,265,142,225,132,187,117,159,102,133,83,93,44"/>
 <area shape="rect" title=" " alt="" coords="168,5,227,31"/>
-<area shape="poly" title=" " alt="" coords="200,46,207,81,214,98,224,113,245,129,269,139,267,144,242,133,220,117,209,101,201,82,195,47"/>
+<area shape="poly" title=" " alt="" coords="197,46,199,82,205,99,215,113,234,124,265,133,340,144,339,149,264,138,232,129,211,117,200,101,194,83,191,47"/>
 <area shape="rect" title=" " alt="" coords="304,5,349,31"/>
-<area shape="poly" title=" " alt="" coords="329,47,329,138,324,138,324,47"/>
+<area shape="poly" title=" " alt="" coords="323,46,320,80,323,98,330,114,342,127,357,136,355,141,338,131,325,116,318,99,315,80,317,45"/>
 <area shape="rect" title=" " alt="" coords="448,5,496,31"/>
-<area shape="poly" title=" " alt="" coords="473,47,465,83,456,101,444,117,417,136,386,146,385,141,415,131,441,113,452,98,460,81,468,46"/>
-<area shape="rect" title=" " alt="" coords="546,5,625,31"/>
-<area shape="poly" title=" " alt="" coords="587,47,579,83,571,102,557,117,528,131,484,141,386,151,385,146,483,136,526,126,554,113,566,99,574,82,582,46"/>
+<area shape="poly" title=" " alt="" coords="470,47,461,82,445,117,420,140,416,136,440,113,456,80,465,46"/>
+<area shape="rect" title=" " alt="" coords="560,5,611,31"/>
+<area shape="poly" title=" " alt="" coords="586,47,577,83,568,101,555,117,533,132,509,143,458,153,457,148,507,138,531,128,551,113,563,99,572,81,581,46"/>
+<area shape="rect" title=" " alt="" coords="658,5,737,31"/>
+<area shape="poly" title=" " alt="" coords="699,46,691,83,683,102,670,117,654,126,632,134,578,144,458,153,457,147,577,139,631,129,652,121,666,113,678,99,686,81,694,45"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -162,6 +164,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a89eb78013dffcbf2780471861a37b90a" id="r_a89eb78013dffcbf2780471861a37b90a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89eb78013dffcbf2780471861a37b90a">cost_factor_</a></td></tr>
 <tr class="memdesc:a89eb78013dffcbf2780471861a37b90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scaling factor applied to cell cost values.  <br /></td></tr>
 <tr class="separator:a89eb78013dffcbf2780471861a37b90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6594c58e9975c44d0602a32f8b89d96" id="r_aa6594c58e9975c44d0602a32f8b89d96"><td class="memItemLeft" align="right" valign="top">geometry_msgs::msg::Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6594c58e9975c44d0602a32f8b89d96">current_goal_</a></td></tr>
+<tr class="memdesc:aa6594c58e9975c44d0602a32f8b89d96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current goal.  <br /></td></tr>
+<tr class="separator:aa6594c58e9975c44d0602a32f8b89d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dc6b25f90bfb16f7f1d95b51800aa00" id="r_a8dc6b25f90bfb16f7f1d95b51800aa00"><td class="memItemLeft" align="right" valign="top">nav_msgs::msg::Path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dc6b25f90bfb16f7f1d95b51800aa00">current_path_</a></td></tr>
 <tr class="memdesc:a8dc6b25f90bfb16f7f1d95b51800aa00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Most recently computed path.  <br /></td></tr>
 <tr class="separator:a8dc6b25f90bfb16f7f1d95b51800aa00"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -413,6 +418,30 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Scaling factor applied to cell cost values. </p>
+
+</div>
+</div>
+<a id="aa6594c58e9975c44d0602a32f8b89d96" name="aa6594c58e9975c44d0602a32f8b89d96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6594c58e9975c44d0602a32f8b89d96">&#9670;&#160;</a></span>current_goal_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::msg::Pose current_goal_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current goal. </p>
 
 </div>
 </div>
