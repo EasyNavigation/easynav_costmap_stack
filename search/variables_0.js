@@ -6,11 +6,12 @@ var searchData=
   ['cached_5fdistances_5f_3',['cached_distances_',['../classeasynav_1_1InflationFilter.html#aeda14e26852cb737ad7d44696e728cda',1,'easynav::InflationFilter']]],
   ['cell_5finflation_5fradius_5f_4',['cell_inflation_radius_',['../classeasynav_1_1InflationFilter.html#a0979a6c1160d23178938af61f4c21372',1,'easynav::InflationFilter']]],
   ['compute_5fodom_5ffrom_5ftf_5f_5',['compute_odom_from_tf_',['../classeasynav_1_1AMCLLocalizer.html#af402f8786d4f74cc9a70e1ccb8884a76',1,'easynav::AMCLLocalizer']]],
-  ['cost_6',['cost',['../structeasynav_1_1MapLocation.html#a1f3c0e47189e8269948c3f9e01b7815c',1,'easynav::MapLocation::cost'],['../structeasynav_1_1GridNode.html#ae3db8bd7af8828db0c0fdc98c13412e2',1,'easynav::GridNode::cost']]],
-  ['cost_5faxial_5f_7',['cost_axial_',['../classeasynav_1_1CostmapPlanner.html#a3a0cc9d7035b71dd3eae451181ee896f',1,'easynav::CostmapPlanner']]],
-  ['cost_5fdiagonal_5f_8',['cost_diagonal_',['../classeasynav_1_1CostmapPlanner.html#aae88bf99367ef2892c348393a3ee8f84',1,'easynav::CostmapPlanner']]],
-  ['cost_5ffactor_5f_9',['cost_factor_',['../classeasynav_1_1CostmapPlanner.html#a89eb78013dffcbf2780471861a37b90a',1,'easynav::CostmapPlanner']]],
-  ['cost_5fscaling_5ffactor_5f_10',['cost_scaling_factor_',['../classeasynav_1_1InflationFilter.html#a0fbe2927ae8f7e2facab0c5a0d11c192',1,'easynav::InflationFilter']]],
-  ['costmap_5f_11',['costmap_',['../classeasynav_1_1Costmap2D.html#a9b1a3d5d06a8675f34758dbaf7f9cf70',1,'easynav::Costmap2D::costmap_'],['../classCostmap2D.html#a9b1a3d5d06a8675f34758dbaf7f9cf70',1,'Costmap2D::costmap_']]],
-  ['current_5fpath_5f_12',['current_path_',['../classeasynav_1_1CostmapPlanner.html#a8dc6b25f90bfb16f7f1d95b51800aa00',1,'easynav::CostmapPlanner']]]
+  ['continuous_5freplan_5f_6',['continuous_replan_',['../classeasynav_1_1CostmapPlanner.html#a35e94cf5823e535adf42e15573b348d8',1,'easynav::CostmapPlanner']]],
+  ['cost_7',['cost',['../structeasynav_1_1MapLocation.html#a1f3c0e47189e8269948c3f9e01b7815c',1,'easynav::MapLocation::cost'],['../structeasynav_1_1GridNode.html#ae3db8bd7af8828db0c0fdc98c13412e2',1,'easynav::GridNode::cost']]],
+  ['cost_5faxial_5f_8',['cost_axial_',['../classeasynav_1_1CostmapPlanner.html#a3a0cc9d7035b71dd3eae451181ee896f',1,'easynav::CostmapPlanner']]],
+  ['cost_5fdiagonal_5f_9',['cost_diagonal_',['../classeasynav_1_1CostmapPlanner.html#aae88bf99367ef2892c348393a3ee8f84',1,'easynav::CostmapPlanner']]],
+  ['cost_5ffactor_5f_10',['cost_factor_',['../classeasynav_1_1CostmapPlanner.html#a89eb78013dffcbf2780471861a37b90a',1,'easynav::CostmapPlanner']]],
+  ['cost_5fscaling_5ffactor_5f_11',['cost_scaling_factor_',['../classeasynav_1_1InflationFilter.html#a0fbe2927ae8f7e2facab0c5a0d11c192',1,'easynav::InflationFilter']]],
+  ['costmap_5f_12',['costmap_',['../classeasynav_1_1Costmap2D.html#a9b1a3d5d06a8675f34758dbaf7f9cf70',1,'easynav::Costmap2D::costmap_'],['../classCostmap2D.html#a9b1a3d5d06a8675f34758dbaf7f9cf70',1,'Costmap2D::costmap_']]],
+  ['current_5fpath_5f_13',['current_path_',['../classeasynav_1_1CostmapPlanner.html#a8dc6b25f90bfb16f7f1d95b51800aa00',1,'easynav::CostmapPlanner']]]
 ];

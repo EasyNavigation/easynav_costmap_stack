@@ -116,15 +116,17 @@ Collaboration diagram for CostmapPlanner:</div>
 <div class="dyncontent">
 <div class="center"><img src="classeasynav_1_1CostmapPlanner__coll__graph.png" border="0" usemap="#aCostmapPlanner_coll__map" alt="Collaboration graph"/></div>
 <map name="aCostmapPlanner_coll__map" id="aCostmapPlanner_coll__map">
-<area shape="rect" title="A planner implementing the A* algorithm on a Costmap2D grid." alt="" coords="202,139,320,165"/>
+<area shape="rect" title="A planner implementing the A* algorithm on a Costmap2D grid." alt="" coords="268,139,385,165"/>
 <area shape="rect" href="classPlannerMethodBase.html" title=" " alt="" coords="5,5,144,31"/>
-<area shape="poly" title=" " alt="" coords="98,40,137,77,184,113,230,136,227,141,181,117,133,81,94,44"/>
+<area shape="poly" title=" " alt="" coords="98,40,140,77,194,113,231,127,268,138,267,143,229,133,192,117,137,81,94,44"/>
 <area shape="rect" title=" " alt="" coords="168,5,227,31"/>
-<area shape="poly" title=" " alt="" coords="193,46,191,80,194,98,200,114,212,127,227,136,224,141,208,131,196,116,189,99,186,80,188,46"/>
-<area shape="rect" title=" " alt="" coords="302,5,351,31"/>
-<area shape="poly" title=" " alt="" coords="325,47,315,81,299,116,279,140,275,137,295,114,310,79,319,45"/>
-<area shape="rect" title=" " alt="" coords="400,5,480,31"/>
-<area shape="poly" title=" " alt="" coords="440,47,431,83,422,101,410,117,390,131,367,141,321,152,320,147,365,136,387,127,406,113,418,99,426,81,435,46"/>
+<area shape="poly" title=" " alt="" coords="200,46,207,81,214,98,224,113,245,129,269,139,267,144,242,133,220,117,209,101,201,82,195,47"/>
+<area shape="rect" title=" " alt="" coords="304,5,349,31"/>
+<area shape="poly" title=" " alt="" coords="329,47,329,138,324,138,324,47"/>
+<area shape="rect" title=" " alt="" coords="448,5,496,31"/>
+<area shape="poly" title=" " alt="" coords="473,47,465,83,456,101,444,117,417,136,386,146,385,141,415,131,441,113,452,98,460,81,468,46"/>
+<area shape="rect" title=" " alt="" coords="546,5,625,31"/>
+<area shape="poly" title=" " alt="" coords="587,47,579,83,571,102,557,117,528,131,484,141,386,151,385,146,483,136,526,126,554,113,566,99,574,82,582,46"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -148,6 +150,9 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a35e94cf5823e535adf42e15573b348d8" id="r_a35e94cf5823e535adf42e15573b348d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35e94cf5823e535adf42e15573b348d8">continuous_replan_</a> {true}</td></tr>
+<tr class="memdesc:a35e94cf5823e535adf42e15573b348d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wheter replan path at freq time.  <br /></td></tr>
+<tr class="separator:a35e94cf5823e535adf42e15573b348d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a0cc9d7035b71dd3eae451181ee896f" id="r_a3a0cc9d7035b71dd3eae451181ee896f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a0cc9d7035b71dd3eae451181ee896f">cost_axial_</a></td></tr>
 <tr class="memdesc:a3a0cc9d7035b71dd3eae451181ee896f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cost multiplier for axial (horizontal/vertical) moves.  <br /></td></tr>
 <tr class="separator:a3a0cc9d7035b71dd3eae451181ee896f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -315,6 +320,30 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a35e94cf5823e535adf42e15573b348d8" name="a35e94cf5823e535adf42e15573b348d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35e94cf5823e535adf42e15573b348d8">&#9670;&#160;</a></span>continuous_replan_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool continuous_replan_ {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wheter replan path at freq time. </p>
+
+</div>
+</div>
 <a id="a3a0cc9d7035b71dd3eae451181ee896f" name="a3a0cc9d7035b71dd3eae451181ee896f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a0cc9d7035b71dd3eae451181ee896f">&#9670;&#160;</a></span>cost_axial_</h2>
 
