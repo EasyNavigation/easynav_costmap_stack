@@ -73,7 +73,7 @@ protected:
   double inflation_penalty_; ///< Extra cost penalty for paths near inflated obstacles.
   double cost_axial_;        ///< Cost multiplier for axial (horizontal/vertical) moves.
   double cost_diagonal_;     ///< Cost multiplier for diagonal moves.
-
+  bool continuous_replan_ {true};    ///< Wheter replan path at freq time
   nav_msgs::msg::Path current_path_;  ///< Most recently computed path.
 
   /// Publisher for the computed navigation path (for visualization or monitoring).

@@ -88,11 +88,14 @@ std::expected<void, std::string> CostmapPlanner::on_initialize()
   node->declare_parameter<double>(plugin_name + ".inflation_penalty", 5.0);
   node->declare_parameter<double>(plugin_name + ".cost_axial", 1.0);
   node->declare_parameter<double>(plugin_name + ".cost_diagonal", 1.41);
+  node->declare_parameter<bool>(plugin_name + ".continuous_replan", true);
 
   node->get_parameter(plugin_name + ".cost_factor", cost_factor_);
   node->get_parameter(plugin_name + ".inflation_penalty", inflation_penalty_);
   node->get_parameter(plugin_name + ".cost_axial", cost_axial_);
   node->get_parameter(plugin_name + ".cost_diagonal", cost_diagonal_);
+  node->get_parameter(plugin_name + ".cost_diagonal", cost_diagonal_);
+  node->get_parameter(plugin_name + ".continuous_replan", continuous_replan_);
 
   path_pub_ = node->create_publisher<nav_msgs::msg::Path>("planner/path", 10);
   return {};
@@ -127,6 +130,9 @@ void CostmapPlanner::update(NavState & nav_state)
         goal.position.y);
     return;
   }
+
+  auto goals_ts = rclcpp::Time(goals.header.stamp);
+  if (!continuous_replan_ && goals_ts < rclcpp::Time(current_path_.header.stamp)) {return;}
 
   auto poses = a_star_path(map, robot_pose.pose.pose, goal);
   if (!poses.empty()) {
